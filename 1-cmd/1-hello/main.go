@@ -5,11 +5,11 @@ import (
 	"fmt"
 )
 
-// --- command lines parameters parsing ---
+// --- command line parameters parsing ---
 
 // from https://gobyexample.com/command-line-flags
 
-// default values
+// default values for command line parameters
 
 var wordPtr *string
 var numbPtr *int
@@ -18,6 +18,8 @@ var boolPtr *bool
 // app init
 
 func init() {
+
+	// command line parameters setup
 
 	wordPtr = flag.String("word", "foo", "a string")
 	numbPtr = flag.Int("numb", 42, "an int")

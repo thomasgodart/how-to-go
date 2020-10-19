@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path"
 	"strconv"
 
 	dotenv "github.com/joho/godotenv"
@@ -12,13 +13,26 @@ import (
 // --- initialization of the app with an env file,    ---
 // --- then overwriting parameters with command lines ---
 
-// default values
-
-var Word string = "foo"
-var Numb int = 42
-var Bool bool = true
+// we can put multiple "init" functions in one go file, like that:
 
 // app init
+
+func init() {
+
+	// sets the current directory to where the app is located
+
+	// /!\ when this is used, then we can't "go run *.go" anymore,
+	// because in that case golang compiles in /tmp/... and runs there
+
+	executable, err := os.Executable()
+	if err != nil {
+		panic(fmt.Sprintf("os.Executable() error: %s", err))
+	}
+	err = os.Chdir(path.Dir(executable))
+	if err != nil {
+		panic(fmt.Sprintf("os.Chdir() error: %s", err))
+	}
+}
 
 func init() {
 
@@ -47,9 +61,15 @@ func init() {
 	}
 }
 
-func init() { // we can put multiple "init" functions in one go file
+// default values for command line parameters
 
-	// command line parameters
+var Word string = "foo"
+var Numb int = 42
+var Bool bool = true
+
+func init() {
+
+	// command line parameters setup
 
 	flag.StringVar(&Word, "word", Word, "a string")
 	flag.IntVar(&Numb, "numb", Numb, "an int")

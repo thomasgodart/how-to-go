@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"strings"
 )
@@ -9,12 +10,14 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 
 	message := r.URL.Path
 	message = strings.TrimPrefix(message, "/")
-	message = "Hello " + message
+	message = "Hello " + message + "\n"
 
 	w.Write([]byte(message))
 }
 
 func init() {
+
+	// this will register this handle to DefaultServeMux
 
 	http.HandleFunc("/", sayHello)
 }
@@ -30,7 +33,9 @@ func main() {
 	//
 	// then in a project, different services can each receive a different port
 
+	// this will serve DefaultServeMux
+
 	if err := http.ListenAndServe("how-srv-hello:8080", nil); err != nil {
-		panic(err)
+		panic(fmt.Sprintf("http.ListenAndServe(\"how-srv-hello:8080\", nil) error: %s", err))
 	}
 }
