@@ -13,9 +13,9 @@ sudo apt install golang
 # 2/ install them:
 sudo dpkg -i *.deb
 # 3/ redirect links to the new version:
-sudo ln -sf ../lib/go-1.14/bin/go /usr/bin/go
-sudo ln -sf ../lib/go-1.14/bin/gofmt /usr/bin/gofmt
 sudo rm /usr/lib/go && sudo ln -s go-1.14 /usr/lib/go
+sudo ln -sf ../lib/go/bin/go /usr/bin/go
+sudo ln -sf ../lib/go/bin/gofmt /usr/bin/gofmt
 ```
 
 **[Install TinyGo on Linux](https://tinygo.org/getting-started/linux/)**
