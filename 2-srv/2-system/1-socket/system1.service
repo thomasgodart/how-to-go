@@ -1,0 +1,16 @@
+[Unit]
+Description=how-srv-system1
+Requires=network.target
+After=multi-user.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+ExecStart=/var/www/go/how-to-go/2-srv/2-system/1-socket/system1
+Restart=always
+RestartSec=1s
+WatchdogSec=30s
+
+[Install]
+WantedBy=multi-user.target

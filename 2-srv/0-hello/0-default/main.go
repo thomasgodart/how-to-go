@@ -28,8 +28,8 @@ func main() {
 	// in /etc/hosts and give them unique IPs, like:
 	//
 	// 127.0.0.1 localhost
-	// 127.1.2.0 how-srv-hello
-	// 127.1.2.1 how-srv-...
+	// 127.1.0.0 how-srv-hello
+	// 127.1.1.0 how-srv-...
 	//
 	// then in a project, different services can each receive a different port
 
