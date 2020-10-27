@@ -1,3 +1,4 @@
+
 /* --- fonts --- */
 
 body, p, li, h1, h2, h3, h4, h5, h6, input, textarea, select, [contenteditable=true],
@@ -42,4 +43,15 @@ a {
 
 .mdc-elevation--z6 {
 	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0,0,0,.12);
+}
+
+/* --- forms --- */
+
+form input,
+form textarea {
+	width: 100%;
+}
+
+textarea {
+	min-height: 5em;
 }

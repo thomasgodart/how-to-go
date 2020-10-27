@@ -5,10 +5,15 @@
 </head>
 
 <body>
-	<h1>Index title<h1>
+	{{template ".body0" .}}
+
+	<h1 class="top">Simple server<h1>
 
 	<p><a href="/aaa">AAA</a></p>
 	<p><a href="/bbb">BBB</a></p>
+	<p><a href="/ccc">CCC</a></p>
+
+	{{template ".body1" .}}
 </body>
 
 </html>

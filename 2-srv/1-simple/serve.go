@@ -36,6 +36,13 @@ func init() {
 	Mux.HandleFunc("/bbb", func(w http.ResponseWriter, r *http.Request) {
 		tpl.ExecuteTemplate(w, "bbb.html", Obj{})
 	})
+
+	muxNotFound := func(w http.ResponseWriter, r *http.Request) {
+
+		w.WriteHeader(http.StatusNotFound)
+		tpl.ExecuteTemplate(w, "404.html", Obj{})
+	}
+	Mux.NotFoundHandler = http.HandlerFunc(muxNotFound)
 }
 
 func muxStatic(mux *router.Router, relativePath, root string) {

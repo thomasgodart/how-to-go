@@ -1,0 +1,22 @@
+<html>
+
+<head>
+	{{template ".head" .}}
+</head>
+
+<body>
+	{{template ".body0" .}}
+	<a href="/">Back</a>
+
+	<h1>New</h1>
+
+	<form method="post">
+		<input type="text" name="name"><br>
+		<textarea name="content"></textarea>
+		<input type="submit" value="New">
+	</form>
+
+	{{template ".body1" .}}
+</body>
+
+</html>
