@@ -3,11 +3,8 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"net/http"
-	"os"
 	"path"
-	"path/filepath"
 	"strings"
 
 	router "github.com/gorilla/mux"
@@ -45,23 +42,16 @@ func init() {
 
 		if r.Method == "GET" {
 
-			read := filepath.Join(dirRoot, "db")
-			dirs, err := ioutil.ReadDir(read)
-			if err != nil {
-				error := fmt.Sprintf("can't read directory '%s'", read)
-				muxError(error)
-				url := path.Join("/")
-				http.Redirect(w, r, url, http.StatusSeeOther)
-				return
-			}
+			var dbDocs []DBDoc
+			db.Find(&dbDocs)
 
 			docs := make(map[string]Doc)
 
-			for _, dir := range dirs {
+			for _, dbDoc := range dbDocs {
 
-				docs[dir.Name()] = Doc{
-					URL:  path.Join("/", "get", muxPath(dir.Name())),
-					Name: dir.Name(),
+				docs[dbDoc.Name] = Doc{
+					URL:  path.Join("/", "get", muxPath(dbDoc.Name)),
+					Name: dbDoc.Name,
 				}
 			}
 
@@ -82,21 +72,18 @@ func init() {
 		if r.Method == "GET" {
 			name := muxPath(route["name"])
 
-			dir := filepath.Join(dirRoot, "db", name)
-			_, err := os.Stat(dir)
+			var dbDoc DBDoc
+			db.First(&dbDoc, "name = ?", name)
 
-			if os.IsNotExist(err) {
+			if dbDoc.ID == 0 {
 				w.WriteHeader(http.StatusNotFound)
 				tpl.ExecuteTemplate(w, "404.html", Obj{})
 				return
 			}
 
 			var doc Doc
-			doc.Name = name
-
-			if binary, err := ioutil.ReadFile(filepath.Join(dir, "content.html")); err == nil {
-				doc.Content = string(binary)
-			}
+			doc.Name = dbDoc.Name
+			doc.Content = dbDoc.Content
 
 			o := Obj{}
 			o["Doc"] = doc
@@ -115,21 +102,18 @@ func init() {
 		if r.Method == "GET" {
 			name := muxPath(route["name"])
 
-			dir := filepath.Join(dirRoot, "db", name)
-			_, err := os.Stat(dir)
+			var dbDoc DBDoc
+			db.First(&dbDoc, "name = ?", name)
 
-			if os.IsNotExist(err) {
+			if dbDoc.ID == 0 {
 				w.WriteHeader(http.StatusNotFound)
 				tpl.ExecuteTemplate(w, "404.html", Obj{})
 				return
 			}
 
 			var doc Doc
-			doc.Name = name
-
-			if binary, err := ioutil.ReadFile(filepath.Join(dir, "content.html")); err == nil {
-				doc.Content = string(binary)
-			}
+			doc.Name = dbDoc.Name
+			doc.Content = dbDoc.Content
 
 			o := Obj{}
 			o["Doc"] = doc
@@ -142,10 +126,10 @@ func init() {
 			name := muxPath(r.FormValue("name"))
 			content := r.FormValue("content")
 
-			dir := filepath.Join(dirRoot, "db", name)
-			_, err := os.Stat(dir)
+			var dbDoc DBDoc
+			db.First(&dbDoc, "name = ?", name)
 
-			if os.IsNotExist(err) {
+			if dbDoc.ID == 0 {
 				error := fmt.Sprintf("document '%s' does not exist", name)
 				muxError(error)
 				url := path.Join("/set", name)
@@ -153,21 +137,7 @@ func init() {
 				return
 			}
 
-			f, err := os.Create(filepath.Join(dir, "content.html"))
-			defer f.Close()
-
-			if err != nil {
-				url := path.Join("/set", name)
-				http.Redirect(w, r, url, http.StatusSeeOther)
-				return
-			}
-
-			many, err := fmt.Fprint(f, content)
-			if err != nil || many != len(content) {
-				// error
-			} else {
-				// success
-			}
+			db.Model(&dbDoc).Update("content", content)
 
 			url := path.Join("/get", name)
 			http.Redirect(w, r, url, http.StatusSeeOther)
@@ -180,10 +150,10 @@ func init() {
 		if r.Method == "GET" {
 			name := muxPath(route["name"])
 
-			dir := filepath.Join(dirRoot, "db", name)
-			_, err := os.Stat(dir)
+			var dbDoc DBDoc
+			db.First(&dbDoc, "name = ?", name)
 
-			if os.IsNotExist(err) {
+			if dbDoc.ID == 0 {
 				w.WriteHeader(http.StatusNotFound)
 				tpl.ExecuteTemplate(w, "404.html", Obj{})
 				return
@@ -191,10 +161,7 @@ func init() {
 
 			var doc Doc
 			doc.Name = name
-
-			if binary, err := ioutil.ReadFile(filepath.Join(dir, "content.html")); err == nil {
-				doc.Content = string(binary)
-			}
+			doc.Content = dbDoc.Content
 
 			o := Obj{}
 			o["Doc"] = doc
@@ -204,10 +171,10 @@ func init() {
 		if r.Method == "POST" {
 			name := muxPath(route["name"])
 
-			dir := filepath.Join(dirRoot, "db", name)
-			_, err := os.Stat(dir)
+			var dbDoc DBDoc
+			db.First(&dbDoc, "name = ?", name)
 
-			if os.IsNotExist(err) {
+			if dbDoc.ID == 0 {
 				error := fmt.Sprintf("document '%s' does not exist", name)
 				muxError(error)
 				url := path.Join("/del", name)
@@ -215,8 +182,7 @@ func init() {
 				return
 			}
 
-			os.Remove(filepath.Join(dir, "content.html"))
-			os.Remove(dir)
+			db.Delete(&dbDoc, dbDoc.ID)
 
 			url := path.Join("/all")
 			http.Redirect(w, r, url, http.StatusSeeOther)
@@ -235,10 +201,10 @@ func init() {
 			name := muxPath(r.FormValue("name"))
 			content := r.FormValue("content")
 
-			dir := filepath.Join(dirRoot, "db", name)
-			_, err := os.Stat(dir)
+			var dbDoc DBDoc
+			db.First(&dbDoc, "name = ?", name)
 
-			if !os.IsNotExist(err) {
+			if dbDoc.ID != 0 {
 				error := fmt.Sprintf("document '%s' already exists", name)
 				muxError(error)
 				url := path.Join("/new")
@@ -246,36 +212,7 @@ func init() {
 				return
 			}
 
-			err = os.MkdirAll(dir, 0770)
-
-			if err != nil {
-				url := path.Join("/new")
-				http.Redirect(w, r, url, http.StatusSeeOther)
-				return
-			}
-
-			os.Chmod(dir, 0770)
-			if filepath.Dir(dir) != "." {
-				os.Chmod(filepath.Dir(dir), 0770)
-			}
-
-			{
-				f, err := os.Create(filepath.Join(dir, "content.html"))
-				defer f.Close()
-
-				if err != nil {
-					url := path.Join("/new")
-					http.Redirect(w, r, url, http.StatusSeeOther)
-					return
-				}
-
-				many, err := fmt.Fprint(f, content)
-				if err != nil || many != len(content) {
-					// error
-				} else {
-					// success
-				}
-			}
+			db.Create(&DBDoc{Name: name, Content: content})
 
 			url := path.Join("/get", name)
 			http.Redirect(w, r, url, http.StatusSeeOther)

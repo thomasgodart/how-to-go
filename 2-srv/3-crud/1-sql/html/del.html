@@ -1,0 +1,25 @@
+<html>
+
+<head>
+	{{template ".head" .}}
+</head>
+
+<body>
+	{{template ".body0" .}}
+
+	{{if .Doc}}
+		<a href="/set/{{.Doc.Name}}">Back</a>
+
+		<h1>Del {{.Doc.Name}}</h1>
+
+		<div style="white-space:pre;">{{.Doc.Content}}</div>
+
+		<form method="post" action="/del/{{.Doc.Name}}">
+			<input type="submit" value="Del">
+		</form>
+	{{end}}
+
+	{{template ".body1" .}}
+</body>
+
+</html>

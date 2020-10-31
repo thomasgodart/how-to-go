@@ -1,0 +1,20 @@
+<html>
+
+<head>
+	{{template ".head" .}}
+</head>
+
+<body>
+	{{template ".body0" .}}
+	<a href="/">Back</a>
+
+	<h1>All</h1>
+
+	{{range .Docs}}
+		<a href="{{.URL}}"><li>{{.Name}}</li></a>
+	{{end}}
+
+	{{template ".body1" .}}
+</body>
+
+</html>

@@ -20,9 +20,9 @@ func init() {
 
 	// this will open the listen on the network's interface
 
-	Listen, err = net.Listen("tcp", "how-srv-crud0:8080")
+	Listen, err = net.Listen("tcp", "how-srv-crud1:8080")
 	if err != nil {
-		error := fmt.Sprintf("net.Listen(\"tcp\", \"how-srv-crud0:8080\") error: %s", err)
+		error := fmt.Sprintf("net.Listen(\"tcp\", \"how-srv-crud1:8080\") error: %s", err)
 		panic(error)
 	}
 }

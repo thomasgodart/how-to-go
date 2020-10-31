@@ -20,7 +20,8 @@ func init() {
 
 	Listen, err = net.Listen("tcp", "how-srv-hello:8080")
 	if err != nil {
-		panic(fmt.Sprintf("net.Listen(\"tcp\", \"how-srv-hello:8080\") error: %s", err))
+		error := fmt.Sprintf("net.Listen(\"tcp\", \"how-srv-hello:8080\") error: %s", err)
+		panic(error)
 	}
 }
 
@@ -38,6 +39,7 @@ func init() {
 func main() {
 
 	if err := http.Serve(Listen, Mux); err != nil {
-		panic(fmt.Sprintf("http.Serve(Listen, Mux) error: %s", err))
+		error := fmt.Sprintf("http.Serve(Listen, Mux) error: %s", err)
+		panic(error)
 	}
 }

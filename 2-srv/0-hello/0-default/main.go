@@ -36,6 +36,7 @@ func main() {
 	// this will serve DefaultServeMux
 
 	if err := http.ListenAndServe("how-srv-hello:8080", nil); err != nil {
-		panic(fmt.Sprintf("http.ListenAndServe(\"how-srv-hello:8080\", nil) error: %s", err))
+		error := fmt.Sprintf("http.ListenAndServe(\"how-srv-hello:8080\", nil) error: %s", err)
+		panic(error)
 	}
 }

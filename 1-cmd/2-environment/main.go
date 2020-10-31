@@ -10,8 +10,8 @@ import (
 	dotenv "github.com/joho/godotenv"
 )
 
-// --- initialization of the app with an env file,    ---
-// --- then overwriting parameters with command lines ---
+// --- initialization of the app with an env file,       ---
+// --- then overwriting parameters with the command line ---
 
 // we can put multiple "init" functions in one go file, like that:
 
@@ -21,16 +21,21 @@ func init() {
 
 	// sets the current directory to where the app is located
 
+	// it is useful when the app is run as a systemd service, because the
+	// current directory for a service is "/"
+
 	// /!\ when this is used, then we can't "go run *.go" anymore,
 	// because in that case golang compiles in /tmp/... and runs there
 
 	executable, err := os.Executable()
 	if err != nil {
-		panic(fmt.Sprintf("os.Executable() error: %s", err))
+		error := fmt.Sprintf("os.Executable() error: %s", err)
+		panic(error)
 	}
 	err = os.Chdir(path.Dir(executable))
 	if err != nil {
-		panic(fmt.Sprintf("os.Chdir() error: %s", err))
+		error := fmt.Sprintf("os.Chdir() error: %s", err)
+		panic(error)
 	}
 }
 

@@ -4,6 +4,7 @@
 ./environment -help
 ./environment --h
 ./environment -h
+./environment -wrong -command
 
 ./environment
 
