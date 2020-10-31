@@ -9,13 +9,9 @@
 	<a href="/all">Back</a>
 
 	{{if .Doc}}
-		<h1>Get {{.Doc.Name}}</h1>
+		<h1>Get {{.Doc.Name}}<span style="float:right;"><form method="get" action="/set/{{.Doc.Name}}"><input type="submit" value="Set"></form></span></h1>
 
 		<div style="white-space:pre;">{{.Doc.Content}}</div>
-
-		<form method="get" action="/set/{{.Doc.Name}}">
-			<input type="submit" value="Set">
-		</form>
 	{{end}}
 
 	{{template ".body1" .}}
