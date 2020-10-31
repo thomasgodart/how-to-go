@@ -7,31 +7,31 @@ Using it needs:
 * the target environment is [Ubuntu, Linux](https://ubuntu.com/)
 
 It is composed of:
-1. `ini`, the **documentation**
-	1. the **install** instructions
-	1. the **IDE setup**
-1. `cmd`, the **command line** apps who quit when the work is done
-	1. **empty**
+* 0.[`ini`](0-ini), the **documentation**
+	* 0.the **install** instructions
+	* 1._the **IDE setup**_
+* 1.[`cmd`](1-cmd), the **command line** apps who quit when the work is done
+	* 0.**empty**
 		* the empty app is interesting to measure the Go language overhead
-	1. **hello**
+	* 1.**hello**
 		* a classic, but will teach the command line options and writing styles
-	1. **environment**
+	* 2.**environment**
 		* setup an environment to configure your app, overwrite it with the command line
-1. `srv`, the **services** apps who stay alive and never quit
-	1. **hello**
-		* **default**
-			* the most simple hello world service
-		* **mux**
-			* same hello world but using the famous `gorilla/mux` package
-	1. **simple**
+* 2.[`srv`](2-srv), the **services** apps who stay alive and never quit
+	* 0.**hello**
+		* 0.**default**
+			* the simplest "hello world" service
+		* 1.**mux**
+			* same "hello world" but using the famous `gorilla/mux` package
+	* 1.**simple**
 		* a simple web server with HTML templates and static directories
-	1. **system**, a web server started and controlled by `systemd`
-		* **notify**
+	* 2.**system**, a web server started and controlled by `systemd`
+		* 0.**notify**
 			* a simple server that answers to *readiness* and *liveness*
-		* **socket**
+		* 1.**socket**
 			* a more robust server that lets `systemd` deal with sockets
-	1. **crud**, a simple "create retrieve update delete" app
-		* on a **file** system
-		* on **SQL** using [Gorm](https://gorm.io/docs/)
+	* 3.**crud**, a simple "create retrieve update delete" app
+		* 0.**file**, on a file system
+		* 1.**sql**, on SQL using [Gorm](https://gorm.io/docs/)
 
 Numbers are used in the directory names for ordering them.
