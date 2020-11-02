@@ -8,8 +8,8 @@ Using it needs:
 
 It is composed of:
 * 0.[`ini`](0-ini), the **documentation**
-	* 0.the **install** instructions
-	* 1._the **IDE setup**_
+	* 0.**install** instructions
+	* 1._**IDE setup**_
 * 1.[`cmd`](1-cmd), the **command line** apps who quit when the work is done
 	* 0.**empty**
 		* the empty app is interesting to measure the Go language overhead
