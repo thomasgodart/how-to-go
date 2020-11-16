@@ -11,9 +11,13 @@ import (
 
 // database directory init
 
+var dirData string
+
 func init() {
 
-	dir := filepath.Join(dirRoot, "db")
+	dirData = "db"
+
+	dir := filepath.Join(dirRoot, dirData)
 	_, err := os.Stat(dir)
 	if !os.IsNotExist(err) {
 		return
@@ -43,7 +47,7 @@ var db *gorm.DB
 func init() {
 	var err error
 
-	db, err = gorm.Open(sqlite.Open(filepath.Join(dirRoot, "db", "sqlite.db")), &gorm.Config{})
+	db, err = gorm.Open(sqlite.Open(filepath.Join(dirRoot, dirData, "sqlite.db")), &gorm.Config{})
 	if err != nil {
 		error := fmt.Sprintf("gorm.Open(sqlite.Open(\"db/sqlite.db\") error: %s", err)
 		panic(error)

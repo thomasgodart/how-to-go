@@ -24,7 +24,7 @@ func init() {
 	// it is useful when the app is run as a systemd service, because the
 	// current directory for a service is "/"
 
-	// /!\ when this is used, then we can't "go run *.go" anymore,
+	// /!\ when this is used, then we can't "go run" or "go test" anymore,
 	// because in that case golang compiles in /tmp/... and runs there
 
 	executable, err := os.Executable()

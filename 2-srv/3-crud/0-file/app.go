@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"os"
-	"path"
 )
 
 // app init
@@ -11,24 +9,12 @@ import (
 var dirRoot string
 
 func init() {
+	var err error
 
-	// sets the current directory to where the app is located
+	// gets the current directory
 
-	// it is useful when the app is run as a systemd service, because the
-	// current directory for a service is "/"
-
-	// /!\ when this is used, then we can't "go run *.go" anymore,
-	// because in that case golang compiles in /tmp/... and runs there
-
-	executable, err := os.Executable()
+	dirRoot, err = os.Getwd()
 	if err != nil {
-		error := fmt.Sprintf("os.Executable() error: %s", err)
-		panic(error)
+		dirRoot = "."
 	}
-	err = os.Chdir(path.Dir(executable))
-	if err != nil {
-		error := fmt.Sprintf("os.Chdir() error: %s", err)
-		panic(error)
-	}
-	dirRoot = path.Dir(executable)
 }

@@ -45,7 +45,7 @@ func init() {
 
 		if r.Method == "GET" {
 
-			read := filepath.Join(dirRoot, "db")
+			read := filepath.Join(dirRoot, dirData)
 			dirs, err := ioutil.ReadDir(read)
 			if err != nil {
 				error := fmt.Sprintf("can't read directory '%s'", read)
@@ -82,7 +82,7 @@ func init() {
 		if r.Method == "GET" {
 			name := muxPath(route["name"])
 
-			dir := filepath.Join(dirRoot, "db", name)
+			dir := filepath.Join(dirRoot, dirData, name)
 			_, err := os.Stat(dir)
 
 			if os.IsNotExist(err) {
@@ -115,7 +115,7 @@ func init() {
 		if r.Method == "GET" {
 			name := muxPath(route["name"])
 
-			dir := filepath.Join(dirRoot, "db", name)
+			dir := filepath.Join(dirRoot, dirData, name)
 			_, err := os.Stat(dir)
 
 			if os.IsNotExist(err) {
@@ -142,7 +142,7 @@ func init() {
 			name := muxPath(r.FormValue("name"))
 			content := r.FormValue("content")
 
-			dir := filepath.Join(dirRoot, "db", name)
+			dir := filepath.Join(dirRoot, dirData, name)
 			_, err := os.Stat(dir)
 
 			if os.IsNotExist(err) {
@@ -180,7 +180,7 @@ func init() {
 		if r.Method == "GET" {
 			name := muxPath(route["name"])
 
-			dir := filepath.Join(dirRoot, "db", name)
+			dir := filepath.Join(dirRoot, dirData, name)
 			_, err := os.Stat(dir)
 
 			if os.IsNotExist(err) {
@@ -204,7 +204,7 @@ func init() {
 		if r.Method == "POST" {
 			name := muxPath(route["name"])
 
-			dir := filepath.Join(dirRoot, "db", name)
+			dir := filepath.Join(dirRoot, dirData, name)
 			_, err := os.Stat(dir)
 
 			if os.IsNotExist(err) {
@@ -235,7 +235,7 @@ func init() {
 			name := muxPath(r.FormValue("name"))
 			content := r.FormValue("content")
 
-			dir := filepath.Join(dirRoot, "db", name)
+			dir := filepath.Join(dirRoot, dirData, name)
 			_, err := os.Stat(dir)
 
 			if !os.IsNotExist(err) {

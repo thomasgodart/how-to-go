@@ -8,9 +8,13 @@ import (
 
 // data storage init
 
+var dirData string
+
 func init() {
 
-	dir := filepath.Join(dirRoot, "db")
+	dirData = "db"
+
+	dir := filepath.Join(dirRoot, dirData)
 	_, err := os.Stat(dir)
 	if !os.IsNotExist(err) {
 		return
