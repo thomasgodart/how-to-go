@@ -33,5 +33,8 @@ It is composed of:
 	* 3.**crud**, a simple "create retrieve update delete" app
 		* 0.**file**, on a file system
 		* 1.**sql**, on SQL using [Gorm](https://gorm.io/docs/)
+	* 4.**api**, a simple CRUD api with a server and a client
+		* 0.**server**
+		* 1.**client**
 
 Numbers are used in the directory names for ordering them.

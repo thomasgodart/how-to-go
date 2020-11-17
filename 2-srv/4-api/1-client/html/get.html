@@ -1,0 +1,20 @@
+<html>
+
+<head>
+	{{template ".head" .}}
+</head>
+
+<body>
+	{{template ".body0" .}}
+	<a href="/all">Back</a>
+
+	{{if .Doc}}
+		<h1>Get {{.Doc.Name}}<span style="float:right;"><form method="get" action="/set/{{.Doc.Name}}"><input type="submit" value="Set"></form></span></h1>
+
+		<div style="white-space:pre;">{{.Doc.Content}}</div>
+	{{end}}
+
+	{{template ".body1" .}}
+</body>
+
+</html>

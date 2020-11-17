@@ -36,4 +36,6 @@ sudo dpkg -i tinygo_0.15.0_amd64.deb
 127.1.2.1       how-srv-system1
 127.1.3.0       how-srv-crud0
 127.1.3.1       how-srv-crud1
+127.1.4.0       how-srv-api0
+127.1.4.1       how-srv-api1
 ```
