@@ -1,0 +1,34 @@
+<html>
+
+<head>
+	
+	<meta charset="utf-8">
+
+	<title>Simple server</title>
+
+	<link type="text/css" href="https://fonts.googleapis.com/css?family=Josefin+Sans:300" rel="stylesheet">
+
+	<link type="text/css" href="/css/index.css" rel="stylesheet" media="screen,projection">
+	<script type="text/javascript" src="/js/index.js"></script>
+
+</head>
+
+<body>
+	
+	<section class="mdc-elevation--z6">
+
+
+	<a href="/">Back</a>
+
+	<h1>BBB title</h1>
+
+	<p>Donec vel semper sem. Quisque rhoncus erat efficitur, tempor arcu id, tincidunt mi. Pellentesque pretium tellus eu mi maximus laoreet. Ut non venenatis lectus. Sed felis velit, efficitur viverra tempus ac, auctor at enim. Cras eget lacus condimentum, iaculis diam vitae, aliquam velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed ac magna mauris. Donec vel enim vitae tortor pellentesque bibendum. Integer ipsum tortor, porttitor id sem nec, maximus ultricies nibh. Sed ipsum lectus, pellentesque et ligula vitae, sollicitudin tincidunt erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec risus nulla, tincidunt ut sagittis in, gravida et mauris. Integer non tincidunt nisi, vel scelerisque nunc. Sed malesuada at ipsum quis vehicula.</p>
+
+	<p>Suspendisse at accumsan mi. Nunc eu augue ut augue posuere aliquet. Suspendisse consequat tortor nec ligula pellentesque sollicitudin. Curabitur eu luctus dui. Integer facilisis eget sem ac efficitur. Proin purus justo, vestibulum quis turpis sed, vestibulum tempus mi. Praesent varius, elit id feugiat interdum, tortor nunc vulputate ligula, a egestas mauris dolor in urna. Donec mi est, consequat quis porta nec, ultrices et magna. Proin at condimentum leo, sed scelerisque velit. Vestibulum tristique, eros id mattis malesuada, est ex feugiat lorem, eu consequat arcu nulla in nisi. Praesent quam risus, pretium ut imperdiet sed, accumsan quis nulla. Nam sapien libero, tincidunt in lectus eu, efficitur commodo nulla. Mauris laoreet ex nulla, eu commodo nibh aliquam ut. Fusce sapien libero, placerat sed arcu sodales, convallis venenatis turpis. Pellentesque mattis faucibus velit, sed iaculis diam tincidunt et.</p>
+
+	
+	</section>
+
+</body>
+
+</html>

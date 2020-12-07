@@ -25,13 +25,13 @@ func init() {
 
 	err = os.Mkdir(dir, 0770)
 	if err != nil {
-		error := fmt.Sprintf("os.Mkdir(\"%s\", 0770) error: %s", dir, err)
+		error := fmt.Sprintf(`os.Mkdir("%s", 0770) error: %s`, dir, err)
 		panic(error)
 	}
 
 	os.Chmod(dir, 0770) // because of https://github.com/golang/go/issues/25539#issuecomment-394472286
 	if err != nil {
-		error := fmt.Sprintf("os.Chmod(\"%s\", 0770) error: %s", dir, err)
+		error := fmt.Sprintf(`os.Chmod("%s", 0770) error: %`, dir, err)
 		panic(error)
 	}
 }
@@ -53,7 +53,7 @@ func init() {
 
 	db, err = gorm.Open(sqlite.Open(filepath.Join(dirRoot, dirData, "sqlite.db")), &gorm.Config{})
 	if err != nil {
-		error := fmt.Sprintf("gorm.Open(sqlite.Open(\"db/sqlite.db\") error: %s", err)
+		error := fmt.Sprintf(`gorm.Open(sqlite.Open("db/sqlite.db") error: %s`, err)
 		panic(error)
 	}
 

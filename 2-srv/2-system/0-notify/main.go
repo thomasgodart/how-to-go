@@ -30,7 +30,7 @@ func main() {
 
 	listen, err := net.Listen("tcp", "how-srv-system0:8080")
 	if err != nil {
-		log.Panicf("net.Listen(\"tcp\", \"how-srv-system0:8080\") error: %s", err)
+		log.Panicf(`net.Listen("tcp", "how-srv-system0:8080") error: %s`, err)
 	}
 
 	notify() // notify must always be placed after "listen" and before "serve"

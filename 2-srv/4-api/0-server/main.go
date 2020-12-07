@@ -22,7 +22,7 @@ func init() {
 
 	Listen, err = net.Listen("tcp", "how-srv-api0:8080")
 	if err != nil {
-		error := fmt.Sprintf("net.Listen(\"tcp\", \"how-srv-api0:8080\") error: %s", err)
+		error := fmt.Sprintf(`net.Listen("tcp", "how-srv-api0:8080") error: %s`, err)
 		panic(error)
 	}
 }

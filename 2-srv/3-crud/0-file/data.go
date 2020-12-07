@@ -22,7 +22,7 @@ func init() {
 
 	err = os.Mkdir(dir, 0770)
 	if err != nil {
-		error := fmt.Sprintf("os.Mkdir(\"%s\", 0770) error: %s", dir, err)
+		error := fmt.Sprintf(`os.Mkdir("%s", 0770) error: %s`, dir, err)
 		panic(error)
 	}
 
