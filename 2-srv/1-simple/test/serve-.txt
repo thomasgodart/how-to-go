@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	
+
 	<meta charset="utf-8">
 
 	<title>Simple server</title>
@@ -14,17 +14,17 @@
 </head>
 
 <body>
-	
+
 	<section class="mdc-elevation--z6">
 
 
-	<h1 class="top">Simple server<h1>
+	<h1 class="top">Simple server</h1>
 
 	<p><a href="/aaa">AAA</a></p>
 	<p><a href="/bbb">BBB</a></p>
 	<p><a href="/ccc">CCC</a></p>
 
-	
+
 	</section>
 
 </body>
